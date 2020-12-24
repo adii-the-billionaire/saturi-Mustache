@@ -32,6 +32,7 @@ const $messages = document.querySelector( '#cia' )
 
 //templaltes 
 const messageTemplate = document.querySelector('#sia').innerHTML
+const locationMessageTemplate = document.querySelector('#tia').innerHTML
 
 
 socket.on( 'countUpdated', (count) => {
@@ -82,4 +83,12 @@ document.querySelector( '#hi' ).addEventListener( 'click', () => {
             console.log('location shared')
         })
     })
+} )
+
+socket.on( 'locationMessage', ( url ) => {
+    console.log( url )
+    const html = Mustache.render( locationMessageTemplate, {
+        url
+    } )
+   $messages.insertAdjacentHTML('beforeend',html)
 })
