@@ -27,12 +27,22 @@ const socket = io()
 //elements
 const $messageForm = document.querySelector( '#mes' )
 const $messageFormInput = $messageForm.querySelector( 'input' )
-const $messageFormButton = $messageForm.querySelector('button')
+const $messageFormButton = $messageForm.querySelector( 'button' )
+const $messages = document.querySelector( '#cia' )
+
+//templaltes 
+const messageTemplate = document.querySelector('#sia').innerHTML
+
+
 socket.on( 'countUpdated', (count) => {
     console.log('the count has been updated', count)
 } )
 socket.on( 'message', ( message ) => {
-    console.log(message)
+    console.log( message )
+    const html = Mustache.render( messageTemplate, {
+        message //here is reference oibject for the templated
+    } )
+    $messages.insertAdjacentHTML('beforeend',html)
 })
 document.querySelector( '#increment' ).addEventListener( 'click', () => {
     console.log( 'clicked' )
