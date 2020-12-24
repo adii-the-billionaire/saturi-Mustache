@@ -41,7 +41,8 @@ socket.on( 'countUpdated', (count) => {
 socket.on( 'message', ( message ) => {
     console.log( message )
     const html = Mustache.render( messageTemplate, {
-        message //here is reference oibject for the templated
+        message: message.text,//here is reference oibject for the templated
+        createdAt:moment(message.createdAt).format('h:mm a')
     } )
     $messages.insertAdjacentHTML('beforeend',html)
 })
