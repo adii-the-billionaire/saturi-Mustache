@@ -14,6 +14,8 @@ const sideBarTemplates = document.querySelector('#sidebar-template').innerHTML
 //here is parsing our location.search name and rooms
 const {username,room } = Qs.parse(location.search,{ignoreQueryPrefix:true})
 
+
+
 socket.on('message', (message) => {
     console.log(message)
     const html = Mustache.render( messageTemplate, {
@@ -21,7 +23,8 @@ socket.on('message', (message) => {
         message: message.text,
         createdAt: moment(message.createdAt).format('h:mm a')
     })
-    $messages.insertAdjacentHTML('beforeend', html)
+    $messages.insertAdjacentHTML( 'beforeend', html )
+ 
 })
 
 socket.on('locationMessage', (message) => {
@@ -31,13 +34,14 @@ socket.on('locationMessage', (message) => {
         url: message.url,
         createdAt: moment(message.createdAt).format('h:mm a')
     })
-    $messages.insertAdjacentHTML('beforeend', html)
+    $messages.insertAdjacentHTML( 'beforeend', html )
+  
 } )
 
 socket.on( 'roomData', ( {room,users } ) => {
     const html = Mustache.render( sideBarTemplates, {
         room,
-        users
+       users
     } )
     document.querySelector('#sidebar').innerHTML = html
 })
