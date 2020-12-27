@@ -22,12 +22,7 @@ const addUser = ( { id, username, room } ) => {
     users.push( user )
     return { user }
 }
-addUser( {
-    id: 33,
-    username: 'hii',
-    room:'hai'
-} )
-console.log( users )
+
 
 const removeUser = ( id ) => {
     const profile = users.findIndex( ( user ) => {
@@ -38,8 +33,7 @@ const removeUser = ( id ) => {
     }
 }
 
-removeUser( 33 )
-console.log( users )
+
 
 const getUser = ( id ) => {
     return users.find( (user ) => {
@@ -52,4 +46,11 @@ const getUserInRoom = ( room ) => {
     return users.filter( ( user ) => {
         return user.room ===room
     })
+}
+
+module.exports = {
+    addUser,
+    removeUser,
+    getUser,
+    getUserInRoom
 }
